@@ -1,15 +1,21 @@
 from fastapi import FastAPI
 
-app = FastAPI(
-    title="AgentFlow",
-    description="Agentic Research Platform",
-    version="0.1.0",
+from app.api.routes.health import router as health_router
+from app.core.config import settings
+from app.core.logging import setup_logging
 
+
+setup_logging()
+
+
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION,
+    description="Agentic research platform powered by LangGraph.",
 )
 
-@app.get("/api/health")
-async def heaith_check():
-    return {
-        "status" : "healthy",
-        "service" : "AgentFlow backend",
-    }
+
+app.include_router(
+    health_router,
+    prefix=settings.API_PREFIX,
+)
