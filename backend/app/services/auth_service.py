@@ -1,3 +1,4 @@
+
 def register_user() -> None:
     """
     User registration logic will be implemented in Phase 3.

@@ -1,7 +1,7 @@
 from datetime  import datetime
 from pydantic import BaseModel, ConfigDict
 
-class DicumentResponse(BaseModel):
+class DocumentResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id : str
     file_name : str
@@ -13,6 +13,6 @@ class DocumentUploadReque(BaseModel):
     document_id : str
     file_name : str
     status : str
-    
+
    
 

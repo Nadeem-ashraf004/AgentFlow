@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import literal 
-from pydantic import BaseModel, field 
+from typing import Literal
+from pydantic import BaseModel, Field
 
 
-ResearchStatus = literal[
+ResearchStatus = Literal[
     "pending",
-    "palanning",
+    "planning",
     "researching",
     "analysing",
     "writing",
@@ -16,9 +16,9 @@ ResearchStatus = literal[
 ]
 
 class ResearchRequest(BaseModel):
-    query: str = field(..., min_length=3, max_length=10000)
-    document_id: list[str] = field(default_factory=list)
-    conversation_id: str | None = None
+    query: str = Field(..., min_length=3, max_length=10000)
+    document_id: list[str] = Field(default_factory=list)
+    conversation_id: str | None = Field(default=None)
 
 class ResearchResponse(BaseModel):
     id : str
