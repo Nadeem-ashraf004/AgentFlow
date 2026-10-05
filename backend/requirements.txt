@@ -6,3 +6,7 @@ python-dotenv
 pytest
 httpx
 email-validator
+SQLAlchemy
+psycopg[binary]
+pwdlib[argon2]
+PyJWT
