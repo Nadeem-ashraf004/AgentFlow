@@ -4,6 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.security import hash_password, verify_password, access_token
+from app.models.user import User
 def register_user() -> None:
     """
     User registration logic will be implemented in Phase 3.
