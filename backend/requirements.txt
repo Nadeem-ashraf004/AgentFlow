@@ -10,3 +10,4 @@ SQLAlchemy
 psycopg[binary]
 pwdlib[argon2]
 PyJWT
+alembic

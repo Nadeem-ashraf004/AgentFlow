@@ -10,10 +10,11 @@ from app.db.base import Base
 
 class User(Base):
 
-      _TableName_ = "users"
+      __tablename__ = "users"
 
       id : Mapped[UUID] = mapped_column(
-            primary_key=True, default=uuid4
+            primary_key=True, 
+            default=uuid4,
             )
       full_name : Mapped[str] = mapped_column(
             String(100),
@@ -27,20 +28,21 @@ class User(Base):
             String(255),
             nullable= False,
       )
-      is_actice : Mapped[bool] =mapped_column(
+      is_active : Mapped[bool] =mapped_column(
             Boolean,
-            defualt=True,
+            default=True,
+            nullable=False,
 
       )
       created_at : Mapped[datetime] = mapped_column(
             DateTime(timezone=True),
-            server_defualt=func("now()"),
+            server_default=func.now(),
             nullable=False
       )
       updated_at : Mapped[datetime] = mapped_column(
             DateTime(timezone=True),
-            server_defualt=func("now()"),
-            onupdate=func("now()"),
+            server_default=func.now(),
+            onupdate=func.now(),
             nullable=False
       )
 
