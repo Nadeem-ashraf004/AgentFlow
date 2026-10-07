@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta, timezone
-from typing import any
+from typing import Any
 
 import jwt
-from pwdlib import PasswordHasher
+from pwdlib import PasswordHash
 
 from app.core.config import settings
 
-password_hasher = PasswordHasher.recommended()
+password_hasher = PasswordHash.recommended()
 
 def hash_password(password: str) -> str:
 

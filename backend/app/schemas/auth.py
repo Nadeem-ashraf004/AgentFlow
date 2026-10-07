@@ -22,11 +22,12 @@ class UserRegisterRequest(BaseModel):
         max_length=50
         )
     @model_validator(mode="before")
-    def validate_passwords(self)->"UserRegisterRequest":
-        if self.password != self.confirm_password:
+    @classmethod
+    def validate_passwords(cls , values)->"UserRegisterRequest":
+        if values.password != values.confirm_password:
             raise ValueError("password and confirm password do not match")
         else :
-            return self
+            return values
 
 
 class UserLoginRequest(BaseModel):

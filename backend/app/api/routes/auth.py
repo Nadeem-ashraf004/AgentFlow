@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status ,Depends, status
 from typing import Annotated
 from sqlalchemy.orm import Session
-from app.api.dependencies import CurrentUser
+from app.api.dependencies import CurrentUser ,get_current_user
 from app.db.session import get_db
 from app.schemas.auth import (
     TokenResponse,
@@ -9,6 +9,7 @@ from app.schemas.auth import (
     UserRegisterRequest,
     UserResponse,
 )
+from app.models.user import User
 from app.services.auth_service import authentication_user , register_user
 
 
@@ -49,7 +50,7 @@ def login_user(
     response_model=UserResponse,
 )
 def get_me(
-    current_user: CurrentUser,
+    current_user: User = Depends(get_current_user),
 ) -> UserResponse:
     """Return the currently authenticated user."""
 
