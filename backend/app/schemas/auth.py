@@ -5,7 +5,8 @@ class UserRegisterRequest(BaseModel):
         ...,
         min_length=3,
         max_length=50
-        ) 
+        )
+         
     email: EmailStr = Field(
         ..., 
         min_length=5, 
