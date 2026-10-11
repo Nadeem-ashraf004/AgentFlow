@@ -52,8 +52,43 @@ class ResearchQuery(Base):
             primary_key= True,
             default=uuid.uuid4,
         )
-        qurie_id : Mapped [uuid.UUID] = mapped_column(
-            ForeignKey("research_queries.id")
+        query_id : Mapped [uuid.UUID] = mapped_column(
+            ForeignKey("research_queries.id", ondelete="CASCADE"),
+            nullable=False,
+            index=True
         )
-    
-    
+        run_number : Mapped[int] = mapped_column(
+            Integer,
+            default=1,
+            nullable=False,
+        )
+        status : Mapped[str] = mapped_column(
+            String(30),
+            default="pending",
+            nullable= False,
+        )
+        error_massage : Mapped[str | None] = mapped_column(
+            Text,
+            nullable=False,
+        )
+        stated_at : Mapped [datetime | None] = mapped_column(
+            DateTime(timezone=True),
+            nullable=False,
+        )
+        completed_at : Mapped [datetime | None] = mapped_column(
+            DateTime(timezone=True),
+            nullable=False,
+        )
+        created_at : Mapped[datetime] = mapped_column(
+            DateTime(timezone=True),
+            server_default=func.now(),
+            nullable=False,
+        )
+        query : Mapped["ResearchQuery"] = mapped_column(
+            back_populates="runs",
+        )
+        report : Mapped ["Report | None"] = mapped_column(
+            back_populates="research_run",
+            cascade="all, delete-orphan",
+            uselist=False,
+        )
